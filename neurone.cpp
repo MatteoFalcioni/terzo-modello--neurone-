@@ -14,7 +14,7 @@ void Neuron::NullClina(){
         double R = V_ + 1 ;
         Fout<<V_<<'\t'<<W_<<'\t'<<R<<'\n';
     }
-    std::cout<<"The V-Nullclina and W-Nullclina have been saved in Model3.txt"<<'\n';
+    std::cout<<"The V-Nullclina and W-Nullclina points have been saved in Model3.txt"<<'\n';
     Fout.close();
 }
 
