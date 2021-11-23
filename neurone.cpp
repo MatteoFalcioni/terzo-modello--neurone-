@@ -5,13 +5,13 @@
 #include <fstream>
 
 void Neuron::NullClina(){
-    double Vmin = -100;
-    double Vmax = 100;
+    double Vmin = -2.5;
+    double Vmax = 2.5;
     double dV = 0.1;
     std::ofstream Fout("Model3.txt"); 
     for(V_= Vmin; V_<=Vmax; V_+=dV){
         W_ = V_ - std::pow(V_, 3)/3 + I_ ;
-        double R = V_ + 1 ;
+        double R = (1/0.8)*V_ + 0.7/0.8 ;
         Fout<<V_<<'\t'<<W_<<'\t'<<R<<'\n';
     }
     std::cout<<"The V-Nullclina and W-Nullclina have been saved in Model3.txt"<<'\n';
@@ -24,14 +24,13 @@ std::vector<PhasePoint> Neuron::Xeq(int Option){ //intersezione tra cubica dx/dt
     double T = 0.08;
     double A = 0.7;
     double B = 0.8;
-    double C = (1-B*T);
     double dV = 0.001;   //granularità, ad es. di 0.1 mV in V e W
-    double Vmin = -100;
-    double Vmax = 100;
+    double Vmin = -2.5;
+    double Vmax = 2.5;
 
     for(V_=Vmin; V_<=Vmax; V_+=dV){
         W_ = V_ - std::pow(V_, 3)/3 + I_ ;
-        if( ( W_ >= 1/C*(V_ - std::pow(V_,3) + I_ - T*V_ - A*T) - 0.01 ) && ( W_ <= 1/C*(V_ - std::pow(V_,3) + I_ - T*V_ - A*T) + 0.01 ) ) {
+        if( ( V_ - std::pow(V_,3) - W_ + I_ >= V_ + A - B*W_ - 0.01 ) && ( V_ - std::pow(V_,3) - W_ + I_ <= V_ + A - B*W_ + 0.01 ) ) { //è sbagliato il calcolo
             PhasePoint X{V_,W_};
             Xeq.push_back(X);
         }
