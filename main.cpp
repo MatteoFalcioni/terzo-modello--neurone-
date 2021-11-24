@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-    Neuron neuron{100, 0.3};
+    Neuron neuron{3, 0.3, 4};
     neuron.Xeq(1);
     neuron.NullClina();
 }
