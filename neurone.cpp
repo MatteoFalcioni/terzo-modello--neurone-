@@ -10,8 +10,8 @@ void Neuron::NullClina(){
     double dV = 0.001;
     std::ofstream Fout("Nullclina.txt"); 
     for(V_= Vmin; V_<=Vmax; V_+=dV){
-        W_ = V_ - std::pow(V_, 3)/3 + I_ ;  //V nullclina
-        double R = (1/B)*V_ + A/B ;   //W nullclina
+        W_ = V_ - std::pow(V_, 3)/3 + I_ ;  //V nullclina, cioè dV/dt = 0
+        double R = (1/B)*V_ + A/B ;   //W nullclina, dW/dt = 0
         Fout<<V_<<'\t'<<W_<<'\t'<<R<<'\n';
     }
     std::cout<<"The V-Nullclina and W-Nullclina have been saved in Model3.txt"<<'\n';
@@ -43,8 +43,8 @@ std::vector<PhasePoint> Neuron::Xeq(int Option){ //intersezione tra cubica dx/dt
     return Xeq;
 }
 
-void Neuron::Evolve(double Tmax){  //Tmax secondi
-    double dt = 0.001;             //misura in millisecondi
+void Neuron::Evolve(double Tmax){  //T in millisecondi
+    double dt = 1;             
     std::ofstream Fout1("V(t).txt");  //potenziale d'azione del neurone
     std::ofstream Fout2("W(V).txt");  //traiettoria effettiva nella sp. delle fasi
 
