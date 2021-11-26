@@ -34,7 +34,7 @@ class Neuron{
     double GetW() { return W_; }
 
     void NullClina();
-    std::vector<PhasePoint> Xeq(int Option);
+    void Xeq(int Option);
     void Evolve(double Tmax);
 
 };

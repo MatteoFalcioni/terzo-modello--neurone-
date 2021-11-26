@@ -3,7 +3,7 @@
 
 int main() {
     Neuron neuron{0.1, 0.2, 0.3};
-    //neuron.Xeq(1);
-    //neuron.NullClina();
     neuron.Evolve(40);
+    //neuron.Xeq(0);
+    //neuron.NullClina();
 }
