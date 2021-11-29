@@ -34,7 +34,7 @@ void Neuron::Xeq(int Option){ //intersezione tra cubica dx/dt=0 e retta dW/dt=0
     }
     std::cout<<"# of interceptions found: "<<Xeq.size()<<'\n';
 
-    PhasePoint Xavg{0,0};
+    PhasePoint Xavg{};
     for(int i=0; i<Xeq.size(); ++i){
         Xavg.V += ( Xeq[i].V / Xeq.size() ) ;
         Xavg.W += ( Xeq[i].W / Xeq.size() ) ;
@@ -51,14 +51,14 @@ void Neuron::Xeq(int Option){ //intersezione tra cubica dx/dt=0 e retta dW/dt=0
 }
 
 void Neuron::Evolve(double Tmax){  //T in millisecondi
-    double dt = 1;             
+    double dt = 1; 
+    double dI = 0.05;            
     std::ofstream Fout1("V(t).txt");  //potenziale d'azione del neurone
     std::ofstream Fout2("W(V).txt");  //traiettoria effettiva nella sp. delle fasi
 
     for(double t=0; t<Tmax; t+=dt){
         double dV = (V_ - std::pow(V_,3)/3 - W_ + I_)*dt; 
         double dW = T*(V_ + A - B*W_)*dt;
-        double dI = 0.1;
         V_ += dV;
         W_ += dW;
         I_ += dI;
