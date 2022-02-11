@@ -52,7 +52,7 @@ void Neuron::Xeq(int Option){ //intersezione tra cubica dx/dt=0 e retta dW/dt=0
 
 void Neuron::Evolve(double Tmax){  //T in millisecondi
     double dt = 1; 
-    double dI = 0.05;            
+    double dI = 0.5;            
     std::ofstream Fout1("V(t).txt");  //potenziale d'azione del neurone
     std::ofstream Fout2("W(V).txt");  //traiettoria effettiva nella sp. delle fasi
 
@@ -61,7 +61,8 @@ void Neuron::Evolve(double Tmax){  //T in millisecondi
         double dW = T*(V_ + A - B*W_)*dt;
         V_ += dV;
         W_ += dW;
-        I_ += dI;
+        if (t==2) {I_ += dI;}
+        if (t==3) {I_ -= dI;}
         Fout1<<t<<'\t'<<V_<<'\n';
         Fout2<<V_<<'\t'<<W_<<'\n';
     }
